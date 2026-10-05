@@ -7,9 +7,6 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  NODE_VERSION: '20'
-
 jobs:
   lint-and-build:
     name: Lint & Build Application
@@ -22,11 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci || npm install
+        run: npm install --legacy-peer-deps
 
       - name: Type Check & Lint
         run: npm run lint
@@ -62,28 +58,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: '20'
 
       - name: Install Production Dependencies
-        run: npm install --omit=dev
-
-      # Optional Google Cloud Run / Docker deployment step:
-      # If using Google Cloud Run:
-      # - name: Authenticate with Google Cloud
-      #   uses: google-github-actions/auth@v2
-      #   with:
-      #     credentials_json: ${{ secrets.GCP_SA_KEY }}
-      #
-      # - name: Deploy to Cloud Run
-      #   uses: google-github-actions/deploy-cloudrun@v2
-      #   with:
-      #     service: study-buddy
-      #     region: us-central1
-      #     source: ./
-      #     env_vars: |
-      #       GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
-      #       NODE_ENV=production
+        run: npm install --legacy-peer-deps --omit=dev
 
       - name: Deployment Verification
         run: |
-          echo "Build & preparation successful. Ready for deployment to production."
+          echo "Build and preparation completed successfully. Ready for deployment."
