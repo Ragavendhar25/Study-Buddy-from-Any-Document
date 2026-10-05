@@ -1,0 +1,7 @@
+{
+  "name": "Study Buddy",
+  "description": "AI-powered study tool that transforms PDFs and notes into concise summaries, interactive flashcards, quizzes, and a document chat assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
