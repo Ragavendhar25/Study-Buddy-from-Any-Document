@@ -30,7 +30,7 @@ jobs:
       - name: Build Production Assets
         run: npm run build
         env:
-          NODE_ENV: production
+	        BASE_URL: /Study-Buddy-from-Any-Document/
 
       - name: Archive Production Artifacts
         uses: actions/upload-artifact@v4

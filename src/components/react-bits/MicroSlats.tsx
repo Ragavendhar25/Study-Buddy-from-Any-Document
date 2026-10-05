@@ -457,10 +457,17 @@ export const MicroSlats: React.FC<MicroSlatsProps> = ({
     const container = containerRef.current;
     if (!container) return undefined;
 
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: false, depth: false });
-    const gl = renderer.gl;
-    if (!renderer.isWebgl2) {
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+    let renderer: any = null;
+    let gl: any = null;
+    try {
+      renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: false, depth: false });
+      gl = renderer.gl;
+      if (!renderer.isWebgl2) {
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+        return undefined;
+      }
+    } catch (e) {
+      console.warn('MicroSlats WebGL initialization error:', e);
       return undefined;
     }
     gl.clearColor(0, 0, 0, 0);

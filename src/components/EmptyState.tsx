@@ -23,7 +23,7 @@ interface EmptyStateProps {
 }
 
 export const EmptyState: React.FC<EmptyStateProps> = ({ onSelectSample, onFocusInput }) => {
-  const [showcaseMode, setShowcaseMode] = useState<'slats' | 'accordion' | 'spiral' | 'stack'>('slats');
+  const [showcaseMode, setShowcaseMode] = useState<'slats' | 'accordion' | 'spiral' | 'stack'>('accordion');
 
   const extraNotes: Record<string, SampleNote> = {
     astrophysics: {
